@@ -1,0 +1,67 @@
+.counter-card {
+  position: relative;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  color: #ffffff;
+  width: 400px;
+  margin: auto;
+  isolation: isolate; /* Yeh zaroori hai proper layer ke liye */
+  overflow: hidden;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rotating Border Layer */
+.counter-card::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  background: conic-gradient(#ff00ff, #00ffff, #ff00ff, #00ffff);
+  animation: rotateBorder 4s linear infinite;
+  z-index: -1;
+}
+
+/* Inner background to hide extra glow */
+.counter-card::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background-color: #eee;
+  border-radius: 15px;
+  z-index: -1;
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Counter text */
+.counter-value {
+  font-size: 2.5rem;
+  margin: 0px 0px 15px 0px !important;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Buttons styling */
+.button-group button {
+  min-width: 120px;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
